@@ -39,26 +39,38 @@ class _LoginState extends State<Login> {
         );
       case LoginStates.both:
         return Container();
-      default:
-        return Container();
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              "Log in into HomeQuest",
-              textAlign: TextAlign.center,
-            ),
-            buildBody(),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Stack(
+            children: [
+              Positioned(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(Icons.arrow_back_ios),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Text(
+                    "Log in into HomeQuest",
+                    textAlign: TextAlign.center,
+                  ),
+                  buildBody(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

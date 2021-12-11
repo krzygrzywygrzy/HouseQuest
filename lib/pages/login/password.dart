@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hq/widgets/input/button.dart';
 import 'package:hq/widgets/input/custom_text_field.dart';
 
 class LoginPassword extends StatefulWidget {
@@ -35,6 +36,9 @@ class _LoginPasswordState extends State<LoginPassword> {
           hint: "password",
           obscureText: true,
         ),
+        const SizedBox(
+          height: 5,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -44,9 +48,12 @@ class _LoginPasswordState extends State<LoginPassword> {
               },
               child: const Text("Back"),
             ),
-            MaterialButton(
-              onPressed: handleSubmit,
-              child: Text(_loading ? "Loading..." : "Log in"),
+            const SizedBox(
+              width: 10,
+            ),
+            Button(
+              onPress: handleSubmit,
+              label: _loading ? "Loading..." : "Log in",
             )
           ],
         ),

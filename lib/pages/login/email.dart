@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hq/widgets/input/button.dart';
 import 'package:hq/widgets/input/custom_text_field.dart';
 
 class LoginEmail extends StatelessWidget {
@@ -21,14 +22,12 @@ class LoginEmail extends StatelessWidget {
           controller: _controller,
           hint: "email",
         ),
+        const SizedBox(
+          height: 10,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            MaterialButton(
-              onPressed: () => _forward(),
-              child: const Text("Next"),
-            )
-          ],
+          children: [Button(onPress: () => _forward(), label: "Next")],
         ),
       ],
     );
