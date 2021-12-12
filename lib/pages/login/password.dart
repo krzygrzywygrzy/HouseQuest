@@ -7,11 +7,15 @@ class LoginPassword extends StatefulWidget {
     Key? key,
     required controller,
     required Function back,
+    required email,
   })  : _controller = controller,
         _back = back,
+        _email = email,
         super(key: key);
 
   final TextEditingController _controller;
+  final TextEditingController _email;
+
   final Function _back;
 
   @override

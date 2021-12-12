@@ -31,6 +31,7 @@ class _LoginState extends State<Login> {
       case LoginStates.password:
         return LoginPassword(
           controller: _passwordController,
+          email: _emailController,
           back: () {
             setState(() {
               state = LoginStates.email;

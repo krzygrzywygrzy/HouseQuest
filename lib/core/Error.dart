@@ -1,0 +1,1 @@
+class FetchError extends Error {}

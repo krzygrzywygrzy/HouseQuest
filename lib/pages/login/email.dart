@@ -27,7 +27,12 @@ class LoginEmail extends StatelessWidget {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
-          children: [Button(onPress: () => _forward(), label: "Next")],
+          children: [
+            Button(
+              onPress: () => _forward(),
+              label: "Next",
+            )
+          ],
         ),
       ],
     );

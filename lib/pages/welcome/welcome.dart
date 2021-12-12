@@ -38,6 +38,15 @@ class Welcome extends StatelessWidget {
                   },
                   label: "Log in",
                 ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Button(
+                  onPress: () {
+                    // Navigator.pushNamed(context, Login.path);
+                  },
+                  label: "Register",
+                ),
               ],
             )
           ],
