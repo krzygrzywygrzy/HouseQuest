@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:dartz/dartz.dart';
-import 'package:hq/core/Error.dart';
-import 'package:hq/core/Failure.dart';
+import 'package:hq/core/error.dart';
+import 'package:hq/core/failure.dart';
 import 'package:http/http.dart' as http;
 
 class FetchService {
-  static const String URL = "";
+  static const String _url = "https://homequest.herokuapp.com/api";
 
   static Future<Either<Failure, Map<String, dynamic>>> get(
       String endpoint) async {
     try {
-      var url = Uri.parse(URL + endpoint);
+      var url = Uri.parse(_url + endpoint);
       var response = await http.get(url, headers: {
         HttpHeaders.authorizationHeader: "",
       });
@@ -19,7 +19,7 @@ class FetchService {
       if (response.statusCode == 200) {
         return Right(jsonDecode(response.body));
       } else {
-        throw FetchError();
+        throw FetchError(message: jsonDecode(response.body)["message"]);
       }
     } catch (err) {
       return Left(FetchFailure());
@@ -29,22 +29,24 @@ class FetchService {
   static Future<Either<Failure, Map<String, dynamic>>> post(
       String endpoint, Map<String, dynamic> json) async {
     try {
-      var url = Uri.parse(URL + endpoint);
       var response = await http.post(
-        url,
+        Uri.parse(_url + endpoint),
         headers: {
           HttpHeaders.authorizationHeader: "",
         },
         body: jsonEncode(json),
       );
-
       if (response.statusCode == 200) {
         return Right(jsonDecode(response.body));
       } else {
-        throw FetchError();
+        throw FetchError(message: jsonDecode(response.body));
       }
     } catch (err) {
-      return Left(FetchFailure());
+      if (err is FetchError) {
+        return Left(FetchFailure(message: err.message));
+      } else {
+        return Left(UnknownFailure());
+      }
     }
   }
 }

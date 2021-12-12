@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hq/pages/login/both.dart';
 import 'package:hq/pages/login/email.dart';
 import 'package:hq/pages/login/password.dart';
 
@@ -16,6 +17,8 @@ class _LoginState extends State<Login> {
   LoginStates state = LoginStates.email;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  String? _message;
 
   Widget buildBody() {
     switch (state) {
@@ -37,9 +40,19 @@ class _LoginState extends State<Login> {
               state = LoginStates.email;
             });
           },
+          error: (String mess) {
+            setState(() {
+              _message = mess;
+              state = LoginStates.both;
+            });
+          },
         );
       case LoginStates.both:
-        return Container();
+        return LoginBoth(
+          email: _emailController,
+          password: _passwordController,
+          message: _message,
+        );
     }
   }
 
