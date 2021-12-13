@@ -26,14 +26,14 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     List<Member> members = [];
-    if (json["members"]) {
+    if (json["members"] != null) {
       for (Map<String, dynamic> map in json["members"]) {
         members.add(Member.fromJson(map));
       }
     }
 
     List<Quest> quests = [];
-    if (json["tasks"]) {
+    if (json["tasks"] != null) {
       for (Map<String, dynamic> map in json["tasks"]) {
         quests.add(Quest.fromJson(map));
       }
