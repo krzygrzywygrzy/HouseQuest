@@ -28,4 +28,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
+        - asset: fonts/Montserrat-Bold.ttf
+          weight: 700
+        - asset: fonts/Montserrat-SemiBold.ttf
+          weight: 600

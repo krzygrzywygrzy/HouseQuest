@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/pages/home/home_main.dart';
 import 'package:hq/providers/home_provider.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -17,13 +18,46 @@ class _HomeState extends ConsumerState<Home> {
     ref.read(homeProvider.notifier).load();
   }
 
+  int _currentSubScreen = 0;
+
+  Widget buildSubpages() {
+    switch (_currentSubScreen) {
+      case 0:
+        return const HomeMain();
+      default:
+        return Container();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final homeData = ref.watch(homeProvider);
     if (homeData.user != null) {
-      return const Scaffold(
+      return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index) {
+            setState(() {
+              _currentSubScreen = index;
+            });
+          },
+          currentIndex: _currentSubScreen,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.task),
+              label: "Quests",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle),
+              label: "Account",
+            ),
+          ],
+        ),
         body: SafeArea(
-          child: Center(),
+          child: buildSubpages(),
         ),
       );
     } else

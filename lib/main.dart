@@ -19,9 +19,12 @@ class MyApp extends ConsumerWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'HomeQuest',
-        theme: ThemeData(primaryColor: Colors.red),
+        theme: ThemeData(
+          fontFamily: "Montserrat",
+        ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
+          fontFamily: "Montserrat",
         ),
         themeMode: _darkTheme ? ThemeMode.dark : ThemeMode.light,
         initialRoute: Welcome.path,
