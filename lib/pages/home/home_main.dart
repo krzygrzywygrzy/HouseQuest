@@ -5,6 +5,7 @@ import 'package:hq/providers/home_provider.dart';
 import 'package:hq/providers/theme_provider.dart';
 import 'package:hq/widgets/cards/child_card.dart';
 import 'package:hq/widgets/cards/quest_card.dart';
+import 'package:hq/widgets/input/add_button.dart';
 import 'package:hq/widgets/popups/add_child.dart';
 
 class HomeMain extends ConsumerWidget {
@@ -28,7 +29,7 @@ class HomeMain extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "Witaj",
+                        "Welcome",
                         style: TextStyle(
                           fontSize: 30,
                           color: Colors.white54,
@@ -89,34 +90,15 @@ class HomeMain extends ConsumerWidget {
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 if (index == homeData.user!.members.length) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context)
-                            .push(HeroDialogRoute(builder: (context) {
-                          return AddChildPopup();
-                        }));
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Hero(
-                            tag: "Add child",
-                            child: CircleAvatar(
-                              backgroundColor:
-                                  darkTheme ? Colors.black54 : Colors.white,
-                              child: const Icon(Icons.add),
-                              radius: 30,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text("Add child"),
-                        ],
-                      ),
-                    ),
+                  return AddButton(
+                    label: "Add Child",
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(HeroDialogRoute(builder: (context) {
+                        return AddChildPopup();
+                      }));
+                    },
+                    tag: "Add child",
                   );
                 } else {
                   return Padding(
