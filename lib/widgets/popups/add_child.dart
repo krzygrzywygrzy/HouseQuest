@@ -87,19 +87,19 @@ class _AddChildPopupState extends ConsumerState<AddChildPopup> {
                     ),
                     CustomTextField(
                       controller: _fnameController,
-                      hint: "Name",
+                      hint: "name",
                     ),
                     CustomTextField(
                       controller: _surnameController,
-                      hint: "Surname",
+                      hint: "surname",
                     ),
                     CustomTextField(
                       controller: _loginController,
-                      hint: "Login",
+                      hint: "login",
                     ),
                     CustomTextField(
                       controller: _passwordController,
-                      hint: "Password",
+                      hint: "password",
                       obscureText: true,
                     ),
                     const SizedBox(

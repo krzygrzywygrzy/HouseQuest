@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hq/pages/login/login.dart';
+import 'package:hq/pages/register/register.dart';
 import 'package:hq/widgets/input/button.dart';
 
 class Welcome extends StatelessWidget {
@@ -43,7 +44,7 @@ class Welcome extends StatelessWidget {
                 ),
                 Button(
                   onPress: () {
-                    // Navigator.pushNamed(context, Login.path);
+                    Navigator.pushNamed(context, Register.path);
                   },
                   label: "Register",
                 ),
