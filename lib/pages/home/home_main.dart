@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/core/custom_routes/hero_dialog_route.dart';
 import 'package:hq/providers/home_provider.dart';
 import 'package:hq/providers/theme_provider.dart';
 import 'package:hq/widgets/cards/child_card.dart';
+import 'package:hq/widgets/popups/add_child.dart';
 
 class HomeMain extends ConsumerWidget {
   const HomeMain({Key? key}) : super(key: key);
@@ -78,7 +80,7 @@ class HomeMain extends ConsumerWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(
               minHeight: 35.0,
-              maxHeight: 160.0,
+              maxHeight: 110.0,
             ),
             child: ListView.builder(
               itemCount: homeData.user!.members.length + 1,
@@ -89,14 +91,23 @@ class HomeMain extends ConsumerWidget {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(HeroDialogRoute(builder: (context) {
+                          return AddChildPopup();
+                        }));
+                      },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            backgroundColor:
-                                darkTheme ? Colors.black54 : Colors.white,
-                            child: const Icon(Icons.add),
-                            radius: 30,
+                          Hero(
+                            tag: "Add child",
+                            child: CircleAvatar(
+                              backgroundColor:
+                                  darkTheme ? Colors.black54 : Colors.white,
+                              child: const Icon(Icons.add),
+                              radius: 30,
+                            ),
                           ),
                           const SizedBox(
                             height: 5,
@@ -115,7 +126,17 @@ class HomeMain extends ConsumerWidget {
               },
             ),
           ),
-        )
+        ),
+        const SizedBox(),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          child: Text(
+            "Recent Activities",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
       ],
     );
   }
