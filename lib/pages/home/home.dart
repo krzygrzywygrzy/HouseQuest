@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/pages/home/home_account.dart';
 import 'package:hq/pages/home/home_main.dart';
 import 'package:hq/providers/home_provider.dart';
 
@@ -24,6 +25,8 @@ class _HomeState extends ConsumerState<Home> {
     switch (_currentSubScreen) {
       case 0:
         return const HomeMain();
+      case 2:
+        return const HomeAccount();
       default:
         return Container();
     }
