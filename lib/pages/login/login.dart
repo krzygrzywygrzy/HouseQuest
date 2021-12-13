@@ -20,6 +20,13 @@ class _LoginState extends State<Login> {
 
   String? _message;
 
+  void _setError(String mess) {
+    setState(() {
+      _message = mess;
+      state = LoginStates.both;
+    });
+  }
+
   Widget buildBody() {
     switch (state) {
       case LoginStates.email:
@@ -40,18 +47,14 @@ class _LoginState extends State<Login> {
               state = LoginStates.email;
             });
           },
-          error: (String mess) {
-            setState(() {
-              _message = mess;
-              state = LoginStates.both;
-            });
-          },
+          error: _setError,
         );
       case LoginStates.both:
         return LoginBoth(
           email: _emailController,
           password: _passwordController,
           message: _message,
+          error: _setError,
         );
     }
   }

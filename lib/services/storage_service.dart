@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:hq/core/failure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const storageKeyAuth = "auth";
