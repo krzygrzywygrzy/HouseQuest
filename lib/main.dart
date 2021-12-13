@@ -27,7 +27,7 @@ class MyApp extends ConsumerWidget {
         initialRoute: Welcome.path,
         routes: {
           Welcome.path: (context) => const Welcome(),
-          Home.path: (context) => const Home(),
+          Home.path: (context) => Home(),
           Login.path: (context) => const Login(),
         },
       );

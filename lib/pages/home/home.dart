@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends ConsumerWidget {
-  const Home({Key? key}) : super(key: key);
-  static const path = "/";
-
+class Home extends ConsumerStatefulWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Consumer(builder: (context, ref, _) {
-      return const Scaffold();
-    });
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomeState();
+  static String path = "/";
+}
+
+class _HomeState extends ConsumerState<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

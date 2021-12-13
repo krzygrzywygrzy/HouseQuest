@@ -33,7 +33,8 @@ class _LoginBothState extends State<LoginBoth> {
       _loading = true;
     });
 
-    var response = await FetchService.post("/login", {
+    FetchService fetch = FetchService();
+    var response = await fetch.post("/login", {
       "login": widget._email.text,
       "password": widget._password.text,
     });
