@@ -42,8 +42,6 @@ class FetchService {
         body: json,
       );
 
-      print(response.statusCode);
-
       if (response.statusCode < 300) {
         return Right(jsonDecode(response.body));
       } else {
@@ -53,6 +51,7 @@ class FetchService {
       if (err is FetchError) {
         return Left(FetchFailure(message: err.message));
       } else {
+        print(err);
         return Left(UnknownFailure());
       }
     }

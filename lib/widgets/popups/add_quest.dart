@@ -20,30 +20,32 @@ class _AddQuestPopupState extends ConsumerState<AddQuestPopup> {
 
   String? _message;
   bool _loading = false;
+  // ignore: prefer_final_fields
+  String _selectedChild = "";
 
   Future<void> submit() async {
     setState(() {
       _loading = true;
     });
 
-    // var fetch = FetchService();
-    // var data = await fetch.post("/memberReg", {
-    //   "login": _loginController.text,
-    //   "password": _passwordController.text,
-    //   "fname": _fnameController.text,
-    //   "surname": _surnameController.text,
-    // });
+    var fetch = FetchService();
+    var data = await fetch.post("/taskAdd", {
+      "userID": _selectedChild,
+      "title": _titleController.text,
+      "description": _descriptionController.text,
+      "flashesAmount": _rewardController.text,
+    });
 
-    // data.fold((l) {
-    //   if (l is FetchFailure) {
-    //     _message = l.message;
-    //   } else {
-    //     _message = "Unknown Error Accured";
-    //   }
-    // }, (r) {
-    //   ref.read(homeProvider.notifier).load();
-    //   Navigator.pop(context);
-    // });
+    data.fold((l) {
+      if (l is FetchFailure) {
+        _message = l.message;
+      } else {
+        _message = "Unknown Error Accured";
+      }
+    }, (r) {
+      ref.read(homeProvider.notifier).load();
+      Navigator.pop(context);
+    });
 
     setState(() {
       _loading = false;
@@ -63,6 +65,7 @@ class _AddQuestPopupState extends ConsumerState<AddQuestPopup> {
 
   @override
   Widget build(BuildContext context) {
+    final homeData = ref.watch(homeProvider);
     return Center(
       child: Hero(
         tag: "Add quest",
@@ -87,15 +90,57 @@ class _AddQuestPopupState extends ConsumerState<AddQuestPopup> {
                     ),
                     CustomTextField(
                       controller: _titleController,
-                      hint: "name",
+                      hint: "title",
                     ),
                     CustomTextField(
                       controller: _descriptionController,
-                      hint: "surname",
+                      hint: "description",
                     ),
                     CustomTextField(
                       controller: _rewardController,
-                      hint: "login",
+                      hint: "reward",
+                      keyboardType: TextInputType.number,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: SizedBox(
+                          height: 28,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: homeData.user!.members.length,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _selectedChild =
+                                        homeData.user!.members[index].id;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: _selectedChild ==
+                                            homeData.user!.members[index].id
+                                        ? Colors.black54
+                                        : Colors.transparent,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 4),
+                                    child: Center(
+                                      child: Text(
+                                        homeData.user!.members[index].fname,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 10,

@@ -8,14 +8,17 @@ class CustomTextField extends ConsumerWidget {
     required TextEditingController controller,
     bool? obscureText,
     String? hint,
+    TextInputType? keyboardType,
   })  : _controller = controller,
         _obscureText = obscureText,
         _hint = hint,
+        _keyboardType = keyboardType,
         super(key: key);
 
   final TextEditingController _controller;
   final bool? _obscureText;
   final String? _hint;
+  final TextInputType? _keyboardType;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,6 +30,7 @@ class CustomTextField extends ConsumerWidget {
           controller: _controller,
           obscureText: _obscureText ?? false,
           cursorColor: _darkTheme ? Colors.white : Colors.black,
+          keyboardType: _keyboardType ?? TextInputType.text,
           decoration: InputDecoration(
             hintText: _hint,
             enabledBorder: UnderlineInputBorder(

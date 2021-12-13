@@ -1,17 +1,17 @@
 class Quest {
-  String childName;
+  String? childName;
   String sId;
   String title;
   String description;
-  int flashesAmount;
+  int? flashesAmount;
   int iType;
 
   Quest({
-    required this.childName,
+    this.childName,
     required this.sId,
     required this.title,
     required this.description,
-    required this.flashesAmount,
+    this.flashesAmount,
     required this.iType,
   });
 
