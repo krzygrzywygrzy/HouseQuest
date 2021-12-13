@@ -34,7 +34,7 @@ class FetchService {
         headers: {
           HttpHeaders.authorizationHeader: "",
         },
-        body: jsonEncode(json),
+        body: json,
       );
       if (response.statusCode == 200) {
         return Right(jsonDecode(response.body));

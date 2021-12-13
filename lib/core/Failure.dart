@@ -5,4 +5,6 @@ class FetchFailure extends Failure {
   final String? message;
 }
 
+class StorageFailure extends Failure {}
+
 class UnknownFailure extends Failure {}

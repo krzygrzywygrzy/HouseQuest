@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:hq/core/failure.dart';
 import 'package:hq/pages/home/home.dart';
 import 'package:hq/services/fetch_service.dart';
+import 'package:hq/services/storage_service.dart';
 import 'package:hq/widgets/input/button.dart';
 import 'package:hq/widgets/input/custom_text_field.dart';
 
@@ -51,7 +54,8 @@ class _LoginPasswordState extends State<LoginPassword> {
 
       widget._error(message);
     }, (r) {
-      //TODO: save token to stage
+      StorageService storage = StorageService();
+      storage.save(jsonEncode(r));
       Navigator.pushNamed(context, Home.path);
     });
 
