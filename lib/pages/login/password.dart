@@ -52,7 +52,6 @@ class _LoginPasswordState extends State<LoginPassword> {
       } else if (l is UnknownFailure) {
         message = "unknown error accured";
       }
-
       widget._error(message);
     }, (r) {
       StorageService storage = StorageService();

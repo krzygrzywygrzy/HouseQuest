@@ -4,6 +4,7 @@ import 'package:hq/core/custom_routes/hero_dialog_route.dart';
 import 'package:hq/providers/home_provider.dart';
 import 'package:hq/providers/theme_provider.dart';
 import 'package:hq/widgets/cards/child_card.dart';
+import 'package:hq/widgets/cards/quest_card.dart';
 import 'package:hq/widgets/popups/add_child.dart';
 
 class HomeMain extends ConsumerWidget {
@@ -134,6 +135,24 @@ class HomeMain extends ConsumerWidget {
             "Recent Activities",
             style: TextStyle(
               fontSize: 20,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: QuestCard(
+                      quest: homeData.user!.quests[index],
+                    ),
+                  );
+                },
+                itemCount: homeData.user!.quests.length,
+              ),
             ),
           ),
         ),

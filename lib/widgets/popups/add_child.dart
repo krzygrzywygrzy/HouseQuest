@@ -1,26 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/core/failure.dart';
+import 'package:hq/providers/home_provider.dart';
+import 'package:hq/services/fetch_service.dart';
 import 'package:hq/widgets/input/button.dart';
 import 'package:hq/widgets/input/custom_text_field.dart';
 
-// ignore: must_be_immutable
-class AddChildPopup extends StatelessWidget {
-  AddChildPopup({Key? key}) : super(key: key);
+// ignore: use_key_in_widget_constructors
+class AddChildPopup extends ConsumerStatefulWidget {
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _AddChildPopupState();
+}
 
+class _AddChildPopupState extends ConsumerState<AddChildPopup> {
   final _fnameController = TextEditingController();
   final _surnameController = TextEditingController();
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  String? message;
+  String? _message;
+  bool _loading = false;
 
-  Future<void> submit() async {}
+  Future<void> submit() async {
+    setState(() {
+      _loading = true;
+    });
+
+    var fetch = FetchService();
+    var data = await fetch.post("/memberReg", {
+      "login": _loginController.text,
+      "password": _passwordController.text,
+      "fname": _fnameController.text,
+      "surname": _surnameController.text,
+    });
+
+    data.fold((l) {
+      if (l is FetchFailure) {
+        _message = l.message;
+      } else {
+        _message = "Unknown Error Accured";
+      }
+    }, (r) {
+      ref.read(homeProvider.notifier).load();
+      Navigator.pop(context);
+    });
+
+    setState(() {
+      _loading = false;
+    });
+  }
 
   Widget? showMessage() {
-    if (message != null) {
+    if (_message != null) {
       return Center(
         child: Text(
-          message ?? "",
+          _message ?? "",
           textAlign: TextAlign.center,
         ),
       );
@@ -74,7 +108,10 @@ class AddChildPopup extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Button(onPress: submit, label: "Add child"),
+                        Button(
+                          onPress: submit,
+                          label: _loading ? "Loading..." : "Add child",
+                        ),
                       ],
                     ),
                     const SizedBox(

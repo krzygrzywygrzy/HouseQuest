@@ -41,7 +41,10 @@ class FetchService {
         },
         body: json,
       );
-      if (response.statusCode == 200) {
+
+      print(response.statusCode);
+
+      if (response.statusCode < 300) {
         return Right(jsonDecode(response.body));
       } else {
         throw FetchError(message: jsonDecode(response.body));
