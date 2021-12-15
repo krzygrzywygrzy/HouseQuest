@@ -31,6 +31,10 @@ class HomeProvider extends StateNotifier<Home> {
       ),
     );
   }
+
+  logOut() {
+    state = Home(loading: false);
+  }
 }
 
 final homeProvider =

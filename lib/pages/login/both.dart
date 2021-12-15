@@ -51,7 +51,8 @@ class _LoginBothState extends State<LoginBoth> {
     }, (r) {
       var storage = StorageService();
       storage.save(jsonEncode(r));
-      Navigator.pushNamed(context, Home.path);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(Home.path, (Route<dynamic> route) => false);
     });
 
     setState(() {

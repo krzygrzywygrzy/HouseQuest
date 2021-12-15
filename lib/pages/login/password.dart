@@ -56,7 +56,8 @@ class _LoginPasswordState extends State<LoginPassword> {
     }, (r) {
       StorageService storage = StorageService();
       storage.save(jsonEncode(r));
-      Navigator.pushNamed(context, Home.path);
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(Home.path, (Route<dynamic> route) => false);
     });
 
     setState(() {

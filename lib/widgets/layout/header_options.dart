@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hq/pages/account/account.dart';
+import 'package:hq/pages/welcome/welcome.dart';
+import 'package:hq/providers/home_provider.dart';
 import 'package:hq/providers/theme_provider.dart';
 
 class HeaderOptions extends ConsumerWidget {
@@ -22,7 +24,14 @@ class HeaderOptions extends ConsumerWidget {
           width: 8,
         ),
         ModalRoute.of(context)?.settings.name == Account.path
-            ? Container()
+            ? GestureDetector(
+                onTap: () {
+                  ref.read(homeProvider.notifier).logOut();
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      Welcome.path, (Route<dynamic> route) => false);
+                },
+                child: const Icon(Icons.logout_rounded),
+              )
             : GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, Account.path);
