@@ -27,62 +27,73 @@ class QuestCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(HeroDialogRoute(builder: (context) {
-          return const QuestPopup();
-        }));
+        Navigator.of(context).push(
+          HeroDialogRoute(
+            builder: (context) {
+              return QuestPopup(
+                quest: _quest,
+                hero: _quest.sId,
+              );
+            },
+          ),
+        );
       },
-      child: Material(
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        color: Colors.black54,
-        child: SizedBox(
-          width: 150,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Flexible(
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://64.media.tumblr.com/a22ac63e3dfe35a79d6120332b590ef9/tumblr_oticpms3uF1ui51sko1_1280.jpg"),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        _quest.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+      child: Hero(
+        tag: _quest.sId,
+        child: Material(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          color: Colors.black54,
+          child: SizedBox(
+            width: 150,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Flexible(
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        "https://64.media.tumblr.com/a22ac63e3dfe35a79d6120332b590ef9/tumblr_oticpms3uF1ui51sko1_1280.jpg",
                       ),
                     ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    CircleAvatar(
-                      radius: 5,
-                      backgroundColor: statusColor(),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  _quest.childName ?? "",
-                  style: const TextStyle(
-                    fontSize: 12,
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          _quest.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      CircleAvatar(
+                        radius: 5,
+                        backgroundColor: statusColor(),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    _quest.childName ?? "",
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
