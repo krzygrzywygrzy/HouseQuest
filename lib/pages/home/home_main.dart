@@ -120,21 +120,37 @@ class HomeMain extends ConsumerWidget {
             ),
           ),
         ),
-        Expanded(
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: QuestCard(
-                      quest: homeData.user!.quests[index],
-                    ),
-                  );
-                },
-                itemCount: homeData.user!.quests.length,
-              ),
+        // Expanded(
+        //   child: Padding(
+        //     padding: const EdgeInsets.all(16.0),
+        //     child: GridView.builder(
+        //         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //             crossAxisCount: 2, crossAxisSpacing: 16, mainAxisSpacing: 16,),
+        //         itemCount: homeData.user!.quests.length,
+        //         itemBuilder: (context, index) {
+        //           return QuestCard(
+        //             quest: homeData.user!.quests[index],
+        //           );
+        //         }),
+        //   ),
+        // ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: SizedBox(
+            height: 120,
+            child: ListView.builder(
+              itemCount: homeData.user!.quests.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: index == 0
+                      ? const EdgeInsets.symmetric(horizontal: 16)
+                      : const EdgeInsets.only(right: 16),
+                  child: QuestCard(
+                    quest: homeData.user!.quests[index],
+                  ),
+                );
+              },
             ),
           ),
         ),

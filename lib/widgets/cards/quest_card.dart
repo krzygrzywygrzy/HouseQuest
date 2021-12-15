@@ -1,86 +1,90 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/core/custom_routes/hero_dialog_route.dart';
 import 'package:hq/models/quest.dart';
+import 'package:hq/widgets/popups/quest.dart';
 
-class QuestCard extends ConsumerStatefulWidget {
-  const QuestCard({
-    Key? key,
-    required quest,
-  })  : _quest = quest,
+class QuestCard extends StatelessWidget {
+  const QuestCard({Key? key, required quest})
+      : _quest = quest,
         super(key: key);
 
   final Quest _quest;
 
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _QuestCardState();
-}
-
-class _QuestCardState extends ConsumerState<QuestCard> {
-  bool _opened = false;
+  Color statusColor() {
+    switch (_quest.iType) {
+      case 1:
+        return Colors.red;
+      case 2:
+        return Colors.yellow;
+      case 3:
+        return Colors.green;
+      default:
+        return Colors.blue;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      color: Colors.black54,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(HeroDialogRoute(builder: (context) {
+          return const QuestPopup();
+        }));
+      },
+      child: Material(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        color: Colors.black54,
+        child: SizedBox(
+          width: 150,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Flexible(
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://64.media.tumblr.com/a22ac63e3dfe35a79d6120332b590ef9/tumblr_oticpms3uF1ui51sko1_1280.jpg"),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      widget._quest.title,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    Flexible(
+                      child: Text(
+                        _quest.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                    Text(
-                      " | ${widget._quest.childName}",
+                    const SizedBox(
+                      width: 5,
                     ),
+                    CircleAvatar(
+                      radius: 5,
+                      backgroundColor: statusColor(),
+                    )
                   ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _opened = !_opened;
-                    });
-                  },
-                  child: Icon(_opened
-                      ? Icons.arrow_drop_up
-                      : Icons.arrow_drop_down_sharp),
-                )
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  _quest.childName ?? "",
+                  style: const TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
               ],
             ),
-            _opened
-                ? Column(
-                    children: [
-                      Row(
-                        children: [
-                          const Text(
-                            "description: ",
-                            style: TextStyle(color: Colors.white54),
-                          ),
-                          Text(widget._quest.description),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          const Text(
-                            "reward: ",
-                            style: TextStyle(color: Colors.white54),
-                          ),
-                          Text(widget._quest.flashesAmount.toString()),
-                        ],
-                      ),
-                    ],
-                  )
-                : Container(),
-          ],
+          ),
         ),
       ),
     );
