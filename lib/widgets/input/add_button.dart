@@ -27,10 +27,19 @@ class AddButton extends ConsumerWidget {
             children: [
               Hero(
                 tag: tag,
-                child: CircleAvatar(
-                  backgroundColor: darkTheme ? Colors.black54 : Colors.white,
-                  child: const Icon(Icons.add),
-                  radius: 30,
+                child: Material(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  elevation: 2,
+                  child: CircleAvatar(
+                    backgroundColor: darkTheme ? Colors.black54 : Colors.white,
+                    child: Icon(
+                      Icons.add,
+                      color: darkTheme ? Colors.white54 : Colors.black,
+                    ),
+                    radius: 30,
+                  ),
                 ),
               ),
               const SizedBox(

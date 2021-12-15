@@ -51,7 +51,6 @@ class FetchService {
       if (err is FetchError) {
         return Left(FetchFailure(message: err.message));
       } else {
-        print(err);
         return Left(UnknownFailure());
       }
     }

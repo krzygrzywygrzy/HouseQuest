@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
   final _fnameController = TextEditingController();
   final _surnameController = TextEditingController();
 
+  // ignore: unused_field
   String? _message;
 
   void _setError(String mess) {

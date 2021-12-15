@@ -22,7 +22,9 @@ class HomeUsers extends ConsumerWidget {
           maxHeight: 110.0,
         ),
         child: ListView.builder(
-          itemCount: homeData.user!.members.length + 1,
+          itemCount: homeData.user!.isAdult
+              ? homeData.user!.members.length + 1
+              : homeData.user!.members.length,
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

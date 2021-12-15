@@ -21,11 +21,17 @@ class Avatar extends ConsumerWidget {
       onTap: () {
         if (_onTap != null) _onTap!();
       },
-      child: CircleAvatar(
-        radius: _radius,
-        backgroundColor: darkTheme ? Colors.black54 : Colors.white,
-        backgroundImage: const NetworkImage(
-          "https://64.media.tumblr.com/a22ac63e3dfe35a79d6120332b590ef9/tumblr_oticpms3uF1ui51sko1_1280.jpg",
+      child: Material(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(999),
+        ),
+        elevation: 2,
+        child: CircleAvatar(
+          radius: _radius,
+          backgroundColor: darkTheme ? Colors.black54 : Colors.white,
+          backgroundImage: const NetworkImage(
+            "https://64.media.tumblr.com/a22ac63e3dfe35a79d6120332b590ef9/tumblr_oticpms3uF1ui51sko1_1280.jpg",
+          ),
         ),
       ),
     );
