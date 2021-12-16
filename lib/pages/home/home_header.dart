@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/pages/balance/balance.dart';
 import 'package:hq/providers/home_provider.dart';
 import 'package:hq/providers/theme_provider.dart';
 
@@ -32,37 +33,43 @@ class HomeHeader extends ConsumerWidget {
                     style: const TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.w600,
+                      letterSpacing: 1.25,
                     ),
                   ),
                 ],
               ),
             ],
           ),
-          Container(
-            width: 120,
-            decoration: BoxDecoration(
-              color: darkTheme ? Colors.black54 : Colors.black,
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, Balance.path);
+            },
+            child: Container(
+              width: 120,
+              decoration: BoxDecoration(
+                color: darkTheme ? Colors.black54 : Colors.black,
+                borderRadius: BorderRadius.circular(15),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    homeData.user!.funds.toString(),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      homeData.user!.funds.toString(),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const Image(
-                    image: AssetImage("assets/blys.png"),
-                    height: 25,
-                  ),
-                ],
+                    const Image(
+                      image: AssetImage("assets/blys.png"),
+                      height: 25,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

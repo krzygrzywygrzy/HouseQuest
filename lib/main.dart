@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hq/pages/account/account.dart';
+import 'package:hq/pages/balance/balance.dart';
 import 'package:hq/pages/home/home.dart';
 import 'package:hq/pages/login/login.dart';
 import 'package:hq/pages/register/register.dart';
@@ -36,6 +37,7 @@ class MyApp extends ConsumerWidget {
           Login.path: (context) => const Login(),
           Register.path: (context) => const Register(),
           Account.path: (context) => const Account(),
+          Balance.path: (context) => const Balance(),
         },
       );
     });

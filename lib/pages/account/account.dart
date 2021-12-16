@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hq/widgets/layout/header_options.dart';
+import 'package:hq/widgets/layout/pop_screen.dart';
 
 class Account extends ConsumerStatefulWidget {
   const Account({Key? key}) : super(key: key);
@@ -22,14 +23,9 @@ class _AccountState extends ConsumerState<Account> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(Icons.arrow_back_ios),
-                ),
-                const HeaderOptions(),
+              children: const [
+                PopScreen(),
+                HeaderOptions(),
               ],
             ),
           ],
