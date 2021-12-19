@@ -48,7 +48,7 @@ class _AddChildState extends ConsumerState<AddChild> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
-                            "Add child",
+                            "Add child 👶",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 25,
@@ -83,7 +83,7 @@ class _AddChildState extends ConsumerState<AddChild> {
                         child: Row(
                           children: [
                             SelectiveButton(
-                              caption: "male",
+                              caption: "boy 👦",
                               selected: isMale == true,
                               onTap: () {
                                 setState(() {
@@ -95,7 +95,7 @@ class _AddChildState extends ConsumerState<AddChild> {
                               width: 8,
                             ),
                             SelectiveButton(
-                              caption: "female",
+                              caption: "girl 👧",
                               selected: isMale == false,
                               onTap: () {
                                 setState(() {
@@ -107,7 +107,7 @@ class _AddChildState extends ConsumerState<AddChild> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       const Text(
                         "Login data",
@@ -123,7 +123,7 @@ class _AddChildState extends ConsumerState<AddChild> {
                         ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       CustomTextField(
                         controller: _loginController,

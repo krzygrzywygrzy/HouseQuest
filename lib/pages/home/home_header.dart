@@ -29,7 +29,7 @@ class HomeHeader extends ConsumerWidget {
                     ),
                   ),
                   Text(
-                    homeData.user!.fname,
+                    homeData.user!.fname + "👋",
                     style: const TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.w600,

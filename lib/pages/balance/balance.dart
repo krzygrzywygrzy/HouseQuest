@@ -40,7 +40,7 @@ class _BalanceState extends ConsumerState<Balance> {
                 height: 16.0,
               ),
               const Text(
-                "Balance",
+                "Balance 💳",
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.w600,
