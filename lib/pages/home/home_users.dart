@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hq/core/custom_routes/hero_dialog_route.dart';
+import 'package:hq/pages/add/add_child.dart';
 import 'package:hq/providers/home_provider.dart';
 import 'package:hq/widgets/cards/child_card.dart';
 import 'package:hq/widgets/input/add_button.dart';
-import 'package:hq/widgets/popups/add_child.dart';
 
 class HomeUsers extends ConsumerWidget {
   const HomeUsers({Key? key}) : super(key: key);
@@ -32,10 +31,10 @@ class HomeUsers extends ConsumerWidget {
               return AddButton(
                 label: "Add Child",
                 onTap: () {
-                  Navigator.of(context)
-                      .push(HeroDialogRoute(builder: (context) {
-                    return AddChildPopup();
-                  }));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AddChild()));
                 },
                 tag: "Add child",
               );

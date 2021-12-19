@@ -15,7 +15,9 @@ class _HomeState extends ConsumerState<Home> {
   @override
   void initState() {
     super.initState();
-    ref.read(homeProvider.notifier).load();
+    if (ref.read(homeProvider).user == null) {
+      ref.read(homeProvider.notifier).load();
+    }
   }
 
   @override
