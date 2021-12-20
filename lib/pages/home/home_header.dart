@@ -22,14 +22,14 @@ class HomeHeader extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Welcome",
+                    "Welcome 👋",
                     style: TextStyle(
                       fontSize: 20,
                       color: darkTheme ? Colors.white54 : Colors.black54,
                     ),
                   ),
                   Text(
-                    homeData.user!.fname + "👋",
+                    homeData.user!.fname,
                     style: const TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.w600,
@@ -44,31 +44,37 @@ class HomeHeader extends ConsumerWidget {
             onTap: () {
               Navigator.pushNamed(context, Balance.path);
             },
-            child: Container(
-              width: 120,
-              decoration: BoxDecoration(
-                color: darkTheme ? Colors.black54 : Colors.black,
+            child: Material(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
+              child: Container(
+                width: 120,
+                decoration: BoxDecoration(
+                  color: darkTheme ? Colors.black54 : Colors.black,
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      homeData.user!.funds.toString(),
-                      style: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        homeData.user!.funds.toString(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    const Image(
-                      image: AssetImage("assets/blys.png"),
-                      height: 25,
-                    ),
-                  ],
+                      const Image(
+                        image: AssetImage("assets/blys.png"),
+                        height: 25,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
