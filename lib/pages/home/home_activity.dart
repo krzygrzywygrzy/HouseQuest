@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hq/pages/add/add_activity.dart';
 import 'package:hq/pages/add/add_quest.dart';
 import 'package:hq/providers/home_provider.dart';
 import 'package:hq/widgets/cards/quest_card.dart';
@@ -31,7 +32,14 @@ class HomeActicivity extends ConsumerWidget {
               const SizedBox(
                 width: 8,
               ),
-              Button(onPress: () {}, label: "Add Activity 📝"),
+              Button(
+                  onPress: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddActivity(),
+                        ),
+                      ),
+                  label: "Add Activity 📝"),
             ],
           ),
         ),
