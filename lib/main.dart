@@ -7,8 +7,17 @@ import 'package:hq/pages/login/login.dart';
 import 'package:hq/pages/register/register.dart';
 import 'package:hq/pages/welcome/welcome.dart';
 import 'package:hq/providers/theme_provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Supabase.initialize(
+    anonKey:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDc4ODg4NywiZXhwIjoxOTU2MzY0ODg3fQ.K3_o7HBs9jim3F8Kju0vZ7Of4R0PA_ksqqCQM4j-TWI",
+    url: "https://tmogjipowfyeyfvesqvf.supabase.co",
+  );
+
   runApp(const ProviderScope(child: MyApp()));
 }
 
