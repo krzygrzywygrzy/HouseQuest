@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hq/pages/account/account.dart';
+import 'package:hq/pages/auth_state.dart';
 import 'package:hq/pages/balance/balance.dart';
 import 'package:hq/pages/home/home.dart';
 import 'package:hq/pages/login/login.dart';
 import 'package:hq/pages/register/register.dart';
+import 'package:hq/pages/splash_screen.dart';
 import 'package:hq/pages/welcome/welcome.dart';
 import 'package:hq/providers/theme_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -39,8 +41,9 @@ class MyApp extends ConsumerWidget {
           fontFamily: "Montserrat",
         ),
         themeMode: _darkTheme ? ThemeMode.dark : ThemeMode.light,
-        initialRoute: Welcome.path,
+        initialRoute: SplashPage.path,
         routes: {
+          SplashPage.path: (context) => const SplashPage(),
           Welcome.path: (context) => const Welcome(),
           Home.path: (context) => const Home(),
           Login.path: (context) => const Login(),

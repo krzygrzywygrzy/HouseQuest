@@ -20,6 +20,15 @@ class _RegisterState extends State<Register> {
   final _fnameController = TextEditingController();
   final _surnameController = TextEditingController();
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _fnameController.dispose();
+    _surnameController.dispose();
+    super.dispose();
+  }
+
   // ignore: unused_field
   String? _message;
 

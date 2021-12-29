@@ -3,6 +3,7 @@ import 'package:hq/pages/auth_state.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
+  static const String path = "/splash";
 
   @override
   _SplashPageState createState() => _SplashPageState();
