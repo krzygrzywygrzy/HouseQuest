@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hq/pages/account/account.dart';
-import 'package:hq/pages/auth_state.dart';
 import 'package:hq/pages/balance/balance.dart';
 import 'package:hq/pages/home/home.dart';
 import 'package:hq/pages/login/login.dart';
@@ -13,11 +13,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   await Supabase.initialize(
-    anonKey:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MDc4ODg4NywiZXhwIjoxOTU2MzY0ODg3fQ.K3_o7HBs9jim3F8Kju0vZ7Of4R0PA_ksqqCQM4j-TWI",
-    url: "https://tmogjipowfyeyfvesqvf.supabase.co",
+    anonKey: dotenv.env["ANON"],
+    url: dotenv.env["URL"],
   );
 
   runApp(const ProviderScope(child: MyApp()));
